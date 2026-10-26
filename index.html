@@ -1,0 +1,689 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Junior Java Developer | Portfolio</title>
+
+  <style>
+    :root {
+      --bg: #0b1020;
+      --card: #151d33;
+      --text: #f4f6ff;
+      --muted: #a6b0c8;
+      --accent: #8b7cf6;
+      --accent2: #41d6c3;
+      --border: #29334e;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 0 24px;
+    }
+
+    /* Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(11, 16, 32, 0.96);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: var(--accent2);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent2);
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 75vh;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      align-items: center;
+      gap: 50px;
+      padding: 90px 0;
+    }
+
+    .eyebrow {
+      color: var(--accent2);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 13px;
+    }
+
+    h1 {
+      font-size: clamp(38px, 6vw, 65px);
+      line-height: 1.15;
+      margin: 20px 0;
+    }
+
+    h1 span {
+      color: var(--accent);
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 570px;
+      font-size: 18px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 24px;
+      border-radius: 12px;
+      font-weight: bold;
+      transition: 0.25s;
+      border: 1px solid var(--accent);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+    }
+
+    .btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(139, 124, 246, 0.2);
+    }
+
+    /* Profile */
+    .profile-card {
+      padding: 30px;
+      background: linear-gradient(145deg, #222b50, #111729);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      text-align: center;
+    }
+
+    .profile-image {
+      width: 210px;
+      height: 210px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid var(--accent);
+      background: #29334e;
+      margin-bottom: 20px;
+    }
+
+    .profile-card h3 {
+      margin: 5px 0;
+    }
+
+    .profile-card p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* Sections */
+    section {
+      padding: 65px 0;
+    }
+
+    .section-title {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    .about-text {
+      max-width: 800px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    /* Cards */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 25px;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: var(--text);
+    }
+
+    .card p {
+      color: var(--muted);
+    }
+
+    /* Skills */
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      background: #29334e;
+      color: #dcd6ff;
+      padding: 7px 13px;
+      border-radius: 20px;
+      font-size: 13px;
+    }
+
+    /* Project images */
+    .project-image {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 15px;
+    }
+
+    .project-link {
+      display: inline-block;
+      color: var(--accent2);
+      font-weight: bold;
+      margin-top: 12px;
+    }
+
+    .project-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Education */
+    .education-item {
+      background: var(--card);
+      border-left: 4px solid var(--accent);
+      padding: 22px;
+      border-radius: 0 12px 12px 0;
+      margin-bottom: 16px;
+    }
+
+    .education-item h3 {
+      margin: 0 0 8px;
+    }
+
+    .education-item p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    /* Contact */
+    .contact-box {
+      background: linear-gradient(135deg, #20294b, #171c35);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+    }
+
+    .contact-box .buttons {
+      justify-content: center;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    /* Responsive */
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 55px 0;
+      }
+
+      .profile-card {
+        max-width: 400px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        flex-direction: column;
+      }
+
+      .nav-links {
+        justify-content: center;
+      }
+
+      .contact-box {
+        padding: 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <nav class="container">
+      <a href="#home" class="logo">&lt;JavaDev /&gt;</a>
+
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <div class="container" id="home">
+      <div class="hero">
+
+        <div>
+          <div class="eyebrow">Hello, welcome to my portfolio</div>
+
+          <h1>
+            Hi, I'm <span>Your Name</span><br>
+            Junior Java Developer
+          </h1>
+
+          <p>
+            I'm an aspiring Java developer with a passion for
+            object-oriented programming, backend development,
+            clean code and problem-solving.
+          </p>
+
+          <p>
+            I enjoy turning ideas into working applications
+            and continuously improving my programming skills.
+          </p>
+
+          <div class="buttons">
+            <a class="btn btn-primary" href="#projects">
+              View My Projects
+            </a>
+
+            <a class="btn btn-outline"
+               href="https://github.com/YOUR-USERNAME"
+               target="_blank"
+               rel="noopener noreferrer">
+              GitHub
+            </a>
+
+            <a class="btn btn-outline"
+               href="cv.pdf"
+               download>
+              Download CV
+            </a>
+          </div>
+        </div>
+
+        <div class="profile-card">
+          <!-- Replace profile.jpg with your own image -->
+          <img
+            class="profile-image"
+            src="https://placehold.co/400x400/29334e/ffffff?text=Your+Photo"
+            alt="Profile photo placeholder"
+          >
+
+          <h3>Your Name</h3>
+          <p>Junior Java Developer</p>
+          <p>Stockholm, Sweden</p>
+
+          <div class="skill-tags" style="justify-content:center">
+            <span class="tag">Java</span>
+            <span class="tag">OOP</span>
+            <span class="tag">Git</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- About Me -->
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <p class="section-subtitle">
+          A little more about who I am.
+        </p>
+
+        <div class="about-text">
+          <p>
+            I am a motivated Java development student who
+            enjoys learning how software systems work and
+            how to build reliable applications.
+          </p>
+
+          <p>
+            My main interests are backend development,
+            object-oriented design, APIs, databases and
+            software architecture.
+          </p>
+
+          <p>
+            Through practical projects, I am developing my
+            skills in Java, exception handling, collections,
+            file handling, unit testing and teamwork using Git.
+          </p>
+
+          <p>
+            I am looking for opportunities where I can
+            contribute, learn from experienced developers
+            and grow professionally.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <div class="container">
+        <h2 class="section-title">Technical Skills</h2>
+
+        <p class="section-subtitle">
+          Technologies and concepts I work with and study.
+        </p>
+
+        <div class="grid">
+
+          <div class="card">
+            <h3>☕ Java Development</h3>
+            <p>
+              Building applications using core Java
+              and object-oriented principles.
+            </p>
+
+            <div class="skill-tags">
+              <span class="tag">Java</span>
+              <span class="tag">OOP</span>
+              <span class="tag">Inheritance</span>
+              <span class="tag">Interfaces</span>
+              <span class="tag">Generics</span>
+              <span class="tag">Collections</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>🛠 Tools & Testing</h3>
+            <p>
+              Working with development tools,
+              version control and testing.
+            </p>
+
+            <div class="skill-tags">
+              <span class="tag">IntelliJ IDEA</span>
+              <span class="tag">Git</span>
+              <span class="tag">GitHub</span>
+              <span class="tag">JUnit 5</span>
+              <span class="tag">Maven</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>🌐 Backend & Web</h3>
+            <p>
+              Exploring backend applications,
+              databases and web technologies.
+            </p>
+
+            <div class="skill-tags">
+              <span class="tag">SQL</span>
+              <span class="tag">REST APIs</span>
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">Spring Boot - Learning</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <div class="container">
+        <h2 class="section-title">My Projects</h2>
+
+        <p class="section-subtitle">
+          A selection of Java projects and programming exercises.
+        </p>
+
+        <div class="grid">
+
+          <div class="card">
+            <img
+              class="project-image"
+              src="https://placehold.co/600x350/263b61/ffffff?text=Battle+Arena"
+              alt="Battle Arena project preview"
+            >
+
+            <h3>Battle Arena</h3>
+
+            <p>
+              A turn-based Java battle game with characters,
+              health points, attacks and game logic.
+            </p>
+
+            <div class="skill-tags">
+              <span class="tag">Java</span>
+              <span class="tag">OOP</span>
+              <span class="tag">GitHub</span>
+            </div>
+
+            <a class="project-link"
+               href="https://github.com/YOUR-USERNAME"
+               target="_blank"
+               rel="noopener noreferrer">
+              View on GitHub →
+            </a>
+          </div>
+
+          <div class="card">
+            <img
+              class="project-image"
+              src="https://placehold.co/600x350/23534e/ffffff?text=Plant+Hotel"
+              alt="Plant Hotel project preview"
+            >
+
+            <h3>Plant Hotel</h3>
+
+            <p>
+              A Java application that calculates daily
+              watering requirements for different plant types,
+              using polymorphism, inheritance and enums.
+            </p>
+
+            <div class="skill-tags">
+              <span class="tag">Polymorphism</span>
+              <span class="tag">Abstract Classes</span>
+              <span class="tag">Enums</span>
+            </div>
+
+            <a class="project-link"
+               href="https://github.com/YOUR-USERNAME"
+               target="_blank"
+               rel="noopener noreferrer">
+              View on GitHub →
+            </a>
+          </div>
+
+          <div class="card">
+            <img
+              class="project-image"
+              src="https://placehold.co/600x350/4a3165/ffffff?text=Book+Manager"
+              alt="Book Manager project preview"
+            >
+
+            <h3>Book Manager</h3>
+
+            <p>
+              A Java console application for storing
+              and loading book information using
+              file handling and serialization.
+            </p>
+
+            <div class="skill-tags">
+              <span class="tag">Java I/O</span>
+              <span class="tag">Serialization</span>
+              <span class="tag">Collections</span>
+            </div>
+
+            <a class="project-link"
+               href="https://github.com/YOUR-USERNAME"
+               target="_blank"
+               rel="noopener noreferrer">
+              View on GitHub →
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+      <div class="container">
+        <h2 class="section-title">Education</h2>
+        <p class="section-subtitle">
+          My learning journey.
+        </p>
+
+        <div class="education-item">
+          <h3>Java Developer</h3>
+          <p>Vocational Higher Education (YH)</p>
+          <p>School Name | Start Year – End Year</p>
+        </div>
+
+        <div class="education-item">
+          <h3>Continuous Learning</h3>
+          <p>
+            Java, backend development, object-oriented
+            programming, testing and software design.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box">
+
+          <h2 class="section-title">Let's Connect</h2>
+
+          <p>
+            Interested in collaborating or discussing
+            a junior developer opportunity?
+          </p>
+
+          <p>Feel free to get in touch!</p>
+
+          <div class="buttons">
+            <a class="btn btn-primary"
+               href="mailto:your.email@example.com">
+              Email Me
+            </a>
+
+            <a class="btn btn-outline"
+               href="https://linkedin.com/in/YOUR-PROFILE"
+               target="_blank"
+               rel="noopener noreferrer">
+              LinkedIn
+            </a>
+
+            <a class="btn btn-outline"
+               href="https://github.com/YOUR-USERNAME"
+               target="_blank"
+               rel="noopener noreferrer">
+              GitHub
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p id="copyright"></p>
+  </footer>
+
+  <script>
+    const year = new Date().getFullYear();
+
+    document.getElementById("copyright").textContent =
+      `© ${year} Your Name | Junior Java Developer`;
+  </script>
+
+</body>
+</html>
